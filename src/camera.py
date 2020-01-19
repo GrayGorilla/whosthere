@@ -1,8 +1,11 @@
 from picamera import PiCamera
 from google.cloud import vision
 from datetime import datetime
+from google.oauth2 import service_account
 
-client = vision.ImageAnnotatorClient()
+credentials = service_account.Credentials.from_service_account_file('./whosthere-6385b11d40f1.json')
+
+client = vision.ImageAnnotatorClient(credentials=credentials)
 camera = PiCamera()
 
 def takePhoto(fileName):
@@ -30,5 +33,6 @@ def personOrPackage():
             person = True
         elif(obj.name == "Packaged goods"):
             package = True
-
+    
+    
     return fileName, person, package
