@@ -6,11 +6,11 @@ from google.oauth2 import service_account
 credentials = service_account.Credentials.from_service_account_file('./whosthere-6385b11d40f1.json')
 
 client = vision.ImageAnnotatorClient(credentials=credentials)
-camera = PiCamera()
+theCamera = PiCamera()
 
 def takePhoto(fileName):
-    global camera
-    camera.capture(fileName)
+    global theCamera
+    theCamera.capture(fileName)
 
 def personOrPackage():
     now = datetime.now()
