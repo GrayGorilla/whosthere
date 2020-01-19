@@ -6,9 +6,15 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from camera import personOrPackage
 
-def sendEmail(fileName):
-    subject = "Someone is at the door"
-    body = "please work"
+def sendEmail(fileName, person, package):
+    subject = "Front Door:"
+    body = ""
+    if (person):
+        subject = "Someone is at the door"
+        body = "Person(s) detected"
+    elif (package):
+        subject = "Something is at the door"
+        body = "Package(s) detected"
     sender_email = "whosthere2020@gmail.com"
     receiver_email = "whosthere2020@gmail.com, 3eun.siena@gmail.com"
     password = "rosehack2020"

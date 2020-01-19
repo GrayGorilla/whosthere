@@ -3,14 +3,14 @@
 import RPi.GPIO as GPIO
 import time
 
-P_SERVO = 3 # adapt to your wiring
+P_SERVO = 2 # adapt to your wiring
 fPWM = 50 # Hz (not higher with software PWM)
 a = 10
 b = 2
 
 def setup():
     global pwm
-    GPIO.setmode(GPIO.BOARD)
+    GPIO.setmode(GPIO.BCM)
     GPIO.setup(P_SERVO, GPIO.OUT)
     pwm = GPIO.PWM(P_SERVO, fPWM)
     pwm.start(0)
@@ -32,7 +32,10 @@ def close():
         setDirection(direction)
     print("Close done")
 
-setup()
-open()
-close()
-GPIO.cleanup()
+def run():
+    setup()
+    open()
+    close()
+    GPIO.cleanup()
+
+

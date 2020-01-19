@@ -7,4 +7,3 @@ while True:
     print("Motion Detected")
     pir.wait_for_no_motion()
     print("No Motion")
-
