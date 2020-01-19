@@ -1,3 +1,4 @@
 bin
 *.swp
 *.json
+/src/__pycache__
