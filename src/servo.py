@@ -36,6 +36,6 @@ def run():
     setup()
     open()
     close()
-    GPIO.cleanup()
+    
 
 
