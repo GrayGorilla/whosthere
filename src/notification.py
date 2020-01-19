@@ -6,24 +6,22 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from camera import personOrPackage
 
-def sendEmail(filename):
-    subject = "An email with attachment from Python"
-    body = "This is an email with attachment sent from Python"
+def sendEmail(fileName):
+    subject = "Someone is at the door"
+    body = "please work"
     sender_email = "whosthere2020@gmail.com"
-    receiver_email = "whosthere2020@gmail.com"
-    password = input("Type your password and press enter:")
-    
+    receiver_email = "whosthere2020@gmail.com, 3eun.siena@gmail.com"
+    password = "rosehack2020"
+
     # Create a multipart message and set headers
     message = MIMEMultipart()
     message["From"] = sender_email
     message["To"] = receiver_email
     message["Subject"] = subject
-    message["Bcc"] = receiver_email  # Recommended for mass emails
+    message["cc"] = receiver_email  # Recommended for mass emails
 
     # Add body to email
     message.attach(MIMEText(body, "plain"))
-
-    # In same directory as script
 
     # Open PDF file in binary mode
     with open(fileName, "rb") as attachment:
@@ -36,7 +34,7 @@ def sendEmail(filename):
     encoders.encode_base64(part)
 
     # Add header as key/value pair to attachment part
-    part.add_header("Content-Disposition", f"attachment; filename= {filename}",)
+    part.add_header("Content-Disposition", f"attachment; fileName= {fileName}",)
 
     # Add attachment to message and convert message to string
     message.attach(part)
@@ -47,3 +45,4 @@ def sendEmail(filename):
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
         server.login(sender_email, password)
         server.sendmail(sender_email, receiver_email, text)
+
